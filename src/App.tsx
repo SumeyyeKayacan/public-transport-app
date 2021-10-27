@@ -1,14 +1,10 @@
-import useFetch from "./useFetch";
 import { Container, Grid, Paper } from "@mui/material";
 import { LineName } from "./LineName";
 import { DateSection } from "./DateSection";
-import { Departure } from "./types";
-import { formatDistance, subDays } from "date-fns";
+import { useDepartures } from "./useDepartures";
 
 function App() {
-  const { data, error } = useFetch<Departure[]>(
-    `http://localhost:8090/departures?longitude=52.54032435827903&latitude=13.284231198459231&distance=800`
-  );
+  const { data, error } = useDepartures();
 
   if (!data) return <div>Loading</div>;
 

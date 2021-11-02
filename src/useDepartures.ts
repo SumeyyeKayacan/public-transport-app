@@ -1,10 +1,11 @@
 import { compareAsc } from "date-fns";
-import { Departure } from "./types";
+import { Departure, Location } from "./types";
 import useFetch from "./useFetch";
+import { Coords } from "google-map-react";
 
-export const useDepartures = () => {
+export const useDepartures = (userLocation: Location) => {
   const { data, error } = useFetch<Departure[]>(
-    `http://localhost:8090/departures?longitude=52.54032435827903&latitude=13.284231198459231&distance=800`
+    `http://localhost:8090/departures?latitude=${userLocation.latitude}&longitude=${userLocation.longitude}&distance=800`
   );
 
   data?.sort((d1: Departure, d2: Departure) => {

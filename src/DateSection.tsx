@@ -1,17 +1,9 @@
 import { Box } from "@mui/material";
-import { LineType } from "./types";
 import { differenceInMinutes } from "date-fns";
 
 interface Props {
   departureTime: string | number | Date;
 }
-
-const lineMapping = {
-  [LineType.Bus]: { color: "#993399", text: "BUS" },
-  [LineType.Subway]: { color: "#003499", text: "U" },
-  [LineType.Train]: { color: "#37874A", text: "S" },
-  [LineType.Tram]: { color: "#CC0200", text: "M" },
-};
 
 export const DateSection = ({ departureTime }: Props) => {
   return (

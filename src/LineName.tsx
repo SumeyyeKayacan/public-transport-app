@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { lineMapping } from "./LineMapping";
 import { LineType } from "./types";
 
 interface Props {
@@ -6,13 +7,6 @@ interface Props {
   lineNumber: string;
   direction: string;
 }
-
-const lineMapping = {
-  [LineType.Bus]: { color: "#993399", text: "BUS" },
-  [LineType.Subway]: { color: "#003499", text: "U" },
-  [LineType.Train]: { color: "#37874A", text: "S" },
-  [LineType.Tram]: { color: "#CC0200", text: "M" },
-};
 
 export const LineName = ({ lineType, lineNumber, direction }: Props) => {
   const { color, text } = lineMapping[lineType];

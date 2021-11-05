@@ -5,13 +5,21 @@ export const useStops = (data?: Departure[]) => {
   data?.forEach((departure) => {
     if (!stops.find((s) => departure.stop.id === s.id)) {
       stops.push(departure.stop);
-      console.log("stop id is added", departure.stop.id, departure.stop.name);
       console.log(
-        "stop location is",
-        departure.stop.location.latitude,
-        departure.stop.location.longitude
+        "stop id is added",
+        departure.stop.id,
+        departure.stop.name,
+        departure.direction
+      );
+    } else {
+      console.log(
+        "stop is skipped",
+        departure.stop.id,
+        departure.stop.name,
+        departure.direction
       );
     }
   });
+  console.log("EEENNNDDD");
   return stops;
 };

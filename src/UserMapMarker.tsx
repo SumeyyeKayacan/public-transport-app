@@ -1,23 +1,18 @@
+import userPin from "./assets/user-pin.svg";
+import { styled } from "@mui/material/styles";
+
 interface Props {
-  text: string;
   lat: number;
   lng: number;
 }
 
-export const UserMapMarker = ({ text }: Props) => (
-  <div
-    style={{
-      color: "white",
-      background: "grey",
-      padding: "15px 10px",
-      display: "inline-flex",
-      textAlign: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: "100%",
-      transform: "translate(-50%, -50%)",
-    }}
-  >
-    {text}
+const UserImage = styled("img")`
+  width: 40px;
+  height: 40px;
+`;
+
+export const UserMapMarker = (props: Props) => (
+  <div>
+    <UserImage src={userPin} />
   </div>
 );

@@ -3,7 +3,7 @@ import { DeparturesList } from "./DeparturesList";
 import { StopsMap } from "./StopsMap";
 import { Location } from "./types";
 import { useDepartures } from "./useDepartures";
-import { useStops } from "./useStops";
+import { useMarkers } from "./useMarkers";
 
 interface Props {
   position: Location;
@@ -12,13 +12,13 @@ interface Props {
 export const DeparturesContainer = ({ position }: Props) => {
   const { data, error } = useDepartures(position);
 
-  const stops = useStops(data);
+  const markers = useMarkers(data);
 
   if (!data) return <div>Loading</div>;
 
   return (
     <Container maxWidth="sm">
-      <StopsMap center={position} zoom={15} stops={stops} />
+      <StopsMap center={position} zoom={15} markers={markers} />
       <DeparturesList departures={data} />
     </Container>
   );

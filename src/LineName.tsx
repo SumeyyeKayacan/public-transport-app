@@ -17,7 +17,13 @@ export const LineName = ({ lineType, lineNumber, direction }: Props) => {
         py={3}
         bgcolor={color}
         color="white"
-        sx={{ borderRadius: 1, width: 80, minWidth: 80, textAlign: "center" }}
+        sx={{
+          borderRadius: 1,
+          width: 80,
+          minWidth: 80,
+          textAlign: "center",
+          fontWeight: 600,
+        }}
       >
         {text}
         {lineNumber}

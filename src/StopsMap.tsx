@@ -1,5 +1,4 @@
 import GoogleMapReact from "google-map-react";
-import { useState } from "react";
 import { StopMapMarker } from "./StopMapMarker";
 import { LineType, Location } from "./types";
 import { Marker } from "./useMarkers";
@@ -30,7 +29,6 @@ directionsRenderer.setOptions({
 
 export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
   console.log("center", center);
-  const [map, setMap] = useState();
   const directionsService = new google.maps.DirectionsService();
 
   if (destination) {
@@ -56,7 +54,6 @@ export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
   }
 
   const apiIsLoaded = (map: any, maps: any) => {
-    setMap(map);
     directionsRenderer.setMap(map);
   };
 

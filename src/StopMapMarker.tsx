@@ -1,6 +1,6 @@
 import BusLogo from "./assets/bus.svg";
-import SubwayLogo from "./assets/subway.svg";
 import TrainLogo from "./assets/suburban.svg";
+import SubwayLogo from "./assets/subway.svg";
 import TramLogo from "./assets/tram.svg";
 import { LineType } from "./types";
 interface Props {
@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const StopMapMarker = ({ lineType }: Props) => {
-  console.log("lineType", lineType);
   return (
     <div
       style={{

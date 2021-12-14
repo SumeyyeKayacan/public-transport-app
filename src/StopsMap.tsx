@@ -1,50 +1,65 @@
 import GoogleMapReact from "google-map-react";
-import { LineType, Location, Stop } from "./types";
+import { useState } from "react";
 import { StopMapMarker } from "./StopMapMarker";
-import { UserMapMarker } from "./UserMapMarker";
+import { LineType, Location } from "./types";
 import { Marker } from "./useMarkers";
+import { UserMapMarker } from "./UserMapMarker";
 
 interface Props {
   center: Location;
+  destination?: Location;
   zoom: number;
   markers: Marker[];
 }
 
-export const StopsMap = ({ center, zoom, markers }: Props) => {
-  const apiIsLoaded = (map: any, maps: any) => {
-    const directionsService = new maps.DirectionsService();
-    const directionsRenderer = new maps.DirectionsRenderer({
-      suppressMarkers: true,
-      suppressBicyclingLayer: true,
-    });
-    directionsRenderer.setOptions({
-      polylineOptions: {
-        strokeColor: "#ff85a2",
-        strokeWeight: "4",
-        strokeOpacity: "0.7",
-      },
-      // draggable: true,
-    });
-    directionsRenderer.setMap(map);
-    const origin = { lat: 40.756795, lng: -73.954298 };
-    const destination = { lat: 52.53666493175609, lng: 13.286566367364195 };
+declare var google: any;
 
+const directionsRenderer = new google.maps.DirectionsRenderer({
+  suppressMarkers: true,
+  suppressBicyclingLayer: true,
+});
+
+directionsRenderer.setOptions({
+  polylineOptions: {
+    strokeColor: "#ff85a2",
+    strokeWeight: "4",
+    strokeOpacity: "0.7",
+  },
+  draggable: true,
+});
+
+export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
+  console.log("center", center);
+  const [map, setMap] = useState();
+  const directionsService = new google.maps.DirectionsService();
+
+  if (destination) {
+    directionsRenderer?.setDirections("directions", null);
     directionsService.route(
       {
-        origin: center,
-        destination: destination,
+        origin: new google.maps.LatLng(center.latitude, center.longitude),
+        destination: new google.maps.LatLng(
+          destination.latitude,
+          destination.longitude
+        ),
         travelMode: "WALKING",
       },
       (result: any, status: any) => {
         console.log("status", status);
-        if (status === maps.DirectionsStatus.OK) {
+        if (status === google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
         } else {
           console.error(`error fetching directions ${result}`);
         }
       }
     );
+  }
+
+  const apiIsLoaded = (map: any, maps: any) => {
+    setMap(map);
+    directionsRenderer.setMap(map);
   };
+
   return (
     <div style={{ height: "400px", width: "100%" }}>
       <GoogleMapReact

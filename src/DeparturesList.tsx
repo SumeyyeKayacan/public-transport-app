@@ -1,17 +1,25 @@
 import { Grid, Paper } from "@mui/material";
-import { LineName } from "./LineName";
 import { DateSection } from "./DateSection";
+import { LineName } from "./LineName";
 import { Departure } from "./types";
 
 interface Props {
   departures: Departure[];
+  onSelectedDeparture: (departure: Departure) => void;
 }
 
-export const DeparturesList = ({ departures }: Props) => {
+export const DeparturesList = ({ departures, onSelectedDeparture }: Props) => {
   return (
     <Grid container spacing={2}>
       {departures.map((departure) => (
-        <Grid item xs={12} key={departure.tripId}>
+        <Grid
+          item
+          xs={12}
+          key={departure.tripId}
+          onClick={() => {
+            onSelectedDeparture(departure);
+          }}
+        >
           <Paper sx={{ pr: 1, py: 0 }}>
             <Grid
               container

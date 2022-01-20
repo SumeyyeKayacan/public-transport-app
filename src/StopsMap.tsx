@@ -1,4 +1,6 @@
 import GoogleMapReact from "google-map-react";
+import { useState } from "react";
+import { getDirectionsRenderer } from "./maps-renderer";
 import { StopMapMarker } from "./StopMapMarker";
 import { LineType, Location } from "./types";
 import { Marker } from "./useMarkers";
@@ -11,32 +13,18 @@ interface Props {
   markers: Marker[];
 }
 
-declare var google: any;
-
-const directionsRenderer = new google.maps.DirectionsRenderer({
-  suppressMarkers: true,
-  suppressBicyclingLayer: true,
-});
-
-directionsRenderer.setOptions({
-  polylineOptions: {
-    strokeColor: "#ff85a2",
-    strokeWeight: "4",
-    strokeOpacity: "0.7",
-  },
-  draggable: true,
-});
-
 export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
   console.log("center", center);
-  const directionsService = new google.maps.DirectionsService();
+  const [maps, setMaps] = useState<any>();
 
   if (destination) {
-    directionsRenderer?.setDirections("directions", null);
+    const directionsRenderer = getDirectionsRenderer();
+    const directionsService = new maps.DirectionsService();
+    directionsRenderer.setDirections("directions", null);
     directionsService.route(
       {
-        origin: new google.maps.LatLng(center.latitude, center.longitude),
-        destination: new google.maps.LatLng(
+        origin: new maps.LatLng(center.latitude, center.longitude),
+        destination: new maps.LatLng(
           destination.latitude,
           destination.longitude
         ),
@@ -44,7 +32,7 @@ export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
       },
       (result: any, status: any) => {
         console.log("status", status);
-        if (status === google.maps.DirectionsStatus.OK) {
+        if (status === maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
         } else {
           console.error(`error fetching directions ${result}`);
@@ -54,11 +42,13 @@ export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
   }
 
   const apiIsLoaded = (map: any, maps: any) => {
+    setMaps(maps);
+    const directionsRenderer = getDirectionsRenderer();
     directionsRenderer.setMap(map);
   };
 
   return (
-    <div style={{ height: "400px", width: "100%" }}>
+    <div style={{ height: "400px", width: "100%", margin: "20px 0" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyCtyVaUjE2TbSqqIR7wwY7781Jv4gN6pBo" }}
         defaultCenter={{ lat: center.latitude, lng: center.longitude }}

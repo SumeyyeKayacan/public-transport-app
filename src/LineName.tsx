@@ -22,7 +22,7 @@ export const LineName = ({ lineType, lineNumber, direction }: Props) => {
           width: 80,
           minWidth: 80,
           textAlign: "center",
-          fontWeight: 600,
+          fontWeight: 700,
         }}
       >
         {text}

@@ -1,4 +1,5 @@
 import { Grid, Paper } from "@mui/material";
+import { useState } from "react";
 import { DateSection } from "./DateSection";
 import { LineName } from "./LineName";
 import { Departure } from "./types";
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const DeparturesList = ({ departures, onSelectedDeparture }: Props) => {
+  const [selectedDeparture, setSelectedDeparture] = useState<string>();
+
   return (
     <Grid container spacing={2}>
       {departures.map((departure) => (
@@ -18,9 +21,17 @@ export const DeparturesList = ({ departures, onSelectedDeparture }: Props) => {
           key={departure.tripId}
           onClick={() => {
             onSelectedDeparture(departure);
+            setSelectedDeparture(departure.tripId);
           }}
         >
-          <Paper sx={{ pr: 1, py: 0 }}>
+          <Paper
+            sx={{
+              pr: 1,
+              py: 0,
+              backgroundColor:
+                selectedDeparture === departure.tripId ? "#E7E7E7" : "#FFF",
+            }}
+          >
             <Grid
               container
               direction="row"

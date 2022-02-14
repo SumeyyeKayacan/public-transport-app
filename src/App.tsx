@@ -1,5 +1,5 @@
-import { DeparturesContainer } from "./DeparturesContainer";
-import { usePosition } from "./usePosition";
+import { DeparturesContainer } from "./container/DeparturesContainer";
+import { usePosition } from "./lib/usePosition";
 
 function App() {
   const position = usePosition();

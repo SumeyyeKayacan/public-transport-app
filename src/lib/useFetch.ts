@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const useFetch = <T>(url: string) => {
   const [data, setData] = useState<T>();
@@ -22,7 +22,7 @@ const useFetch = <T>(url: string) => {
       })
       .catch((err) => {
         console.log("error caught");
-        setError(err.message);
+        setError(err);
       });
     //
     return () => abortCont.abort();

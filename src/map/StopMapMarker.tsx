@@ -1,8 +1,8 @@
-import BusLogo from "./assets/bus.svg";
-import TrainLogo from "./assets/suburban.svg";
-import SubwayLogo from "./assets/subway.svg";
-import TramLogo from "./assets/tram.svg";
-import { LineType } from "./types";
+import BusLogo from "../assets/bus.svg";
+import TrainLogo from "../assets/suburban.svg";
+import SubwayLogo from "../assets/subway.svg";
+import TramLogo from "../assets/tram.svg";
+import { LineType } from "../lib/types";
 interface Props {
   lineType: LineType;
   lineName: string;

@@ -1,6 +1,6 @@
 import { compareAsc } from "date-fns";
-import { Departure, Location } from "./types";
-import useFetch from "./useFetch";
+import { Departure, Location } from "../lib/types";
+import useFetch from "../lib/useFetch";
 
 export const useDepartures = (userLocation: Location) => {
   console.log("user loc ", userLocation.latitude, userLocation.longitude);

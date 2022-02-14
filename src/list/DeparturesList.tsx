@@ -1,8 +1,8 @@
 import { Grid, Paper } from "@mui/material";
 import { useState } from "react";
+import { Departure } from "../lib/types";
 import { DateSection } from "./DateSection";
 import { LineName } from "./LineName";
-import { Departure } from "./types";
 
 interface Props {
   departures: Departure[];

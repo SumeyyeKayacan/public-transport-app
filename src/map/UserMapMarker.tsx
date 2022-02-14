@@ -1,5 +1,5 @@
-import userPin from "./assets/user-pin.svg";
 import { styled } from "@mui/material/styles";
+import userPin from "../assets/user-pin.svg";
 
 interface Props {
   lat: number;

@@ -1,4 +1,4 @@
-import { Departure, Stop } from "./types";
+import { Departure } from "../lib/types";
 
 export interface Marker {
   id: string;
@@ -22,6 +22,5 @@ export const useMarkers = (data?: Departure[]): Marker[] => {
       });
     }
   });
-  console.log("markers", markers);
   return markers;
 };

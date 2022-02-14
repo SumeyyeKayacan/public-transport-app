@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { lineMapping } from "./LineMapping";
-import { LineType } from "./types";
+import { LineType } from "../lib/types";
+import { lineMapping } from "../lib/lineMapping";
 
 interface Props {
   lineType: LineType;

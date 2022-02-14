@@ -1,21 +1,23 @@
 import GoogleMapReact from "google-map-react";
 import { useState } from "react";
-import { getDirectionsRenderer } from "./maps-renderer";
+import { Departure, LineType, Location } from "../lib/types";
+import { getDirectionsRenderer } from "./mapsRenderer";
 import { StopMapMarker } from "./StopMapMarker";
-import { LineType, Location } from "./types";
-import { Marker } from "./useMarkers";
+import { useMarkers } from "./useMarkers";
 import { UserMapMarker } from "./UserMapMarker";
 
 interface Props {
   center: Location;
   destination?: Location;
   zoom: number;
-  markers: Marker[];
+  departures: Departure[];
 }
 
-export const StopsMap = ({ center, destination, zoom, markers }: Props) => {
+export const StopsMap = ({ center, destination, zoom, departures }: Props) => {
   console.log("center", center);
   const [maps, setMaps] = useState<any>();
+
+  const markers = useMarkers(departures);
 
   if (destination) {
     const directionsRenderer = getDirectionsRenderer();

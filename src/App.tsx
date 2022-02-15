@@ -1,3 +1,4 @@
+import "./App.css";
 import { Loading } from "./components/Loading";
 import { DeparturesContainer } from "./container/DeparturesContainer";
 import { usePosition } from "./lib/usePosition";

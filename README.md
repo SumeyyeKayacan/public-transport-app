@@ -1,4 +1,4 @@
-# Transpost App
+# Transport App
 
 This project is created to show the next departures of public transports nearby the user.
 

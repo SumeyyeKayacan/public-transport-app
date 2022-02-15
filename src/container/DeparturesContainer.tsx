@@ -1,11 +1,7 @@
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  CircularProgress,
-  Container,
-} from "@mui/material";
+import { Container } from "@mui/material";
 import { useState } from "react";
+import { Error } from "../components/Error";
+import { Loading } from "../components/Loading";
 import { Departure, Location } from "../lib/types";
 import { DeparturesList } from "../list/DeparturesList";
 import { StopsMap } from "../map/StopsMap";
@@ -25,19 +21,15 @@ export const DeparturesContainer = ({ position }: Props) => {
 
   if (error) {
     return (
-      <Alert severity="error">
-        <AlertTitle>Error in getting data</AlertTitle>
-        Departures could not be loaded from the server.
-      </Alert>
+      <Error
+        title="Error in getting data"
+        message="Departures could not be loaded from the server."
+      />
     );
   }
 
   if (!data) {
-    return (
-      <Box sx={{ display: "flex" }}>
-        <CircularProgress />
-      </Box>
-    );
+    return <Loading />;
   }
 
   return (

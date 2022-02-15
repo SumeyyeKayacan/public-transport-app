@@ -1,10 +1,12 @@
+import { Loading } from "./components/Loading";
 import { DeparturesContainer } from "./container/DeparturesContainer";
 import { usePosition } from "./lib/usePosition";
 
 function App() {
   const position = usePosition();
+
   if (!position) {
-    return <>Loading...</>;
+    return <Loading />;
   }
 
   return (

@@ -52,7 +52,7 @@ export const StopsMap = ({ center, destination, zoom, departures }: Props) => {
   return (
     <div style={{ height: "400px", width: "100%", margin: "20px 0" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCtyVaUjE2TbSqqIR7wwY7781Jv4gN6pBo" }}
+        bootstrapURLKeys={{ key: "AIzaSyCvRh7ej_bi007IhhFxMVgq2CNe4tUlDuo" }}
         defaultCenter={{ lat: center.latitude, lng: center.longitude }}
         defaultZoom={zoom}
         yesIWantToUseGoogleMapApiInternals

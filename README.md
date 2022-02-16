@@ -2,7 +2,7 @@
 
 This project is created to show the next departures of public transports nearby the user.
 
-This frontend app connects to an API to retrieve the departures. Please run the API before running this project.
+This frontend app connects to an API to retrieve the departures. Please run [this API](https://github.com/SumeyyeKayacan/public-transport-api) before running this project.
 
 ## Screenshot
 

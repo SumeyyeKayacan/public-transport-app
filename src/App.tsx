@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
 import { Loading } from "./components/Loading";
 import { DeparturesContainer } from "./container/DeparturesContainer";
@@ -10,9 +11,13 @@ function App() {
     return <Loading />;
   }
 
+  const queryClient = new QueryClient();
+
   return (
     <div className="App">
-      <DeparturesContainer position={position} />
+      <QueryClientProvider client={queryClient}>
+        <DeparturesContainer position={position} />
+      </QueryClientProvider>
     </div>
   );
 }

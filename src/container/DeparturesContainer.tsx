@@ -15,7 +15,7 @@ export const DeparturesContainer = ({ position }: Props) => {
   const [destination, setDestination] = useState<Location>();
   const { data, error } = useDepartures(position);
 
-  const handleSelectedDparture = (departure: Departure) => {
+  const handleSelectedDeparture = (departure: Departure) => {
     setDestination(departure.stop.location);
   };
 
@@ -33,7 +33,7 @@ export const DeparturesContainer = ({ position }: Props) => {
   }
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ height: "100%", overflow: "hidden" }}>
       <StopsMap
         center={position}
         destination={destination}
@@ -42,7 +42,7 @@ export const DeparturesContainer = ({ position }: Props) => {
       />
       <DeparturesList
         departures={data}
-        onSelectedDeparture={handleSelectedDparture}
+        onSelectedDeparture={handleSelectedDeparture}
       />
     </Container>
   );

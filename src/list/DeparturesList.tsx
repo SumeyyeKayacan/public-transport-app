@@ -13,7 +13,11 @@ export const DeparturesList = ({ departures, onSelectedDeparture }: Props) => {
   const [selectedDeparture, setSelectedDeparture] = useState<string>();
 
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ height: "calc(100% - 320px)", overflowY: "scroll" }}
+    >
       {departures.map((departure) => (
         <Grid
           item
@@ -25,12 +29,12 @@ export const DeparturesList = ({ departures, onSelectedDeparture }: Props) => {
           }}
         >
           <Paper
-            sx={{
-              pr: 1,
-              py: 0,
+            sx={(theme) => ({
               backgroundColor:
-                selectedDeparture === departure.tripId ? "#E7E7E7" : "#FFF",
-            }}
+                selectedDeparture === departure.tripId
+                  ? theme.palette.primary.main
+                  : theme.palette.common.white,
+            })}
           >
             <Grid
               container

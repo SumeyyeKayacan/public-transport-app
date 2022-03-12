@@ -1,10 +1,11 @@
+import { Box } from "@mui/material";
 import GoogleMapReact from "google-map-react";
 import { useState } from "react";
 import { Departure, LineType, Location } from "../lib/types";
 import { StopMapMarker } from "./StopMapMarker";
-import { useRouteRenderer } from "./useRouteRenderer";
 import { useMarkers } from "./useMarkers";
 import { UserMapMarker } from "./UserMapMarker";
+import { useRouteRenderer } from "./useRouteRenderer";
 
 interface Props {
   center: Location;
@@ -26,7 +27,7 @@ export const StopsMap = ({ center, destination, zoom, departures }: Props) => {
   };
 
   return (
-    <div style={{ height: "400px", width: "100%", margin: "20px 0" }}>
+    <Box sx={{ height: "320px", width: "100%", margin: "20px 0" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyB90LChhhQpdYIbBBaDjrybtvR2UKdRQbM" }}
         defaultCenter={{ lat: center.latitude, lng: center.longitude }}
@@ -47,6 +48,6 @@ export const StopsMap = ({ center, destination, zoom, departures }: Props) => {
           );
         })}
       </GoogleMapReact>
-    </div>
+    </Box>
   );
 };

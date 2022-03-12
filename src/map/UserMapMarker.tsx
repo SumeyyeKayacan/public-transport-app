@@ -6,10 +6,12 @@ interface Props {
   lng: number;
 }
 
-const UserImage = styled("img")`
-  width: 40px;
-  height: 40px;
-`;
+const UserImage = styled("img")(
+  ({ theme }) => `
+  width: ${theme.spacing(5)};
+  height: ${theme.spacing(5)};
+`
+);
 
 export const UserMapMarker = (props: Props) => (
   <div>

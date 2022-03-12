@@ -1,3 +1,5 @@
+import { theme } from "../theme";
+
 declare var google: any;
 
 let directionsRenderer: any;
@@ -12,7 +14,7 @@ export const getDirectionsRenderer = () => {
 
   directionsRenderer.setOptions({
     polylineOptions: {
-      strokeColor: "#ff85a2",
+      strokeColor: theme.palette.secondary.main,
       strokeWeight: "4",
       strokeOpacity: "0.7",
     },

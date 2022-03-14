@@ -18,16 +18,16 @@ export const StopMapMarker = ({ lineType }: Props) => {
       }}
     >
       {lineType === LineType.Bus && (
-        <img src={BusLogo} height={30} width={30} />
+        <img src={BusLogo} height={30} width={30} alt="Bus" />
       )}
       {lineType === LineType.Subway && (
-        <img src={SubwayLogo} height={25} width={25} />
+        <img src={SubwayLogo} height={25} width={25} alt="U" />
       )}
       {lineType === LineType.Train && (
-        <img src={TrainLogo} height={30} width={30} />
+        <img src={TrainLogo} height={30} width={30} alt="S" />
       )}
       {lineType === LineType.Tram && (
-        <img src={TramLogo} height={30} width={30} />
+        <img src={TramLogo} height={30} width={30} alt="Tram" />
       )}
     </div>
   );

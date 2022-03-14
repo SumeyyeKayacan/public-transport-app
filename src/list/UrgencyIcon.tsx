@@ -32,11 +32,11 @@ const calculateUrgency = (
     return Urgency.Running;
   }
 
-  if (urgencyFactor > 1 && urgencyFactor <= 1.5) {
+  if (urgencyFactor > 1 && urgencyFactor <= 1.6) {
     return Urgency.Walking;
   }
 
-  if (urgencyFactor > 1.5) {
+  if (urgencyFactor > 1.6) {
     return Urgency.WaitForIt;
   }
 

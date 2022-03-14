@@ -52,7 +52,10 @@ export const DeparturesList = ({ departures }: Props) => {
                 />
               </Grid>
               <Grid item sx={{ width: "40px" }}>
-                <DateSection departureTime={departure.when}></DateSection>
+                <DateSection
+                  departureTime={departure.when}
+                  walkingDurationInSeconds={departure.walkingDuration}
+                ></DateSection>
               </Grid>
             </Grid>
           </Paper>

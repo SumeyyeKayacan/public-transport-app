@@ -32,4 +32,5 @@ export interface Departure {
   delay: number;
   direction: string;
   line: Line;
+  walkingDuration: number;
 }

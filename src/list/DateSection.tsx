@@ -1,17 +1,34 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { differenceInMinutes } from "date-fns";
+import { UrgencyIcon } from "./UrgencyIcon";
 
 interface Props {
   departureTime: string | number | Date;
+  walkingDurationInSeconds: number;
 }
 
-export const DateSection = ({ departureTime }: Props) => {
+export const DateSection = ({
+  departureTime,
+  walkingDurationInSeconds,
+}: Props) => {
   return (
     <Box px={1} py={3} sx={{ borderRadius: 1, textAlign: "center" }}>
-      <Box sx={{ fontSize: "24px", color: "blue" }}>
-        {differenceInMinutes(new Date(departureTime), new Date())}
-      </Box>
-      <Box sx={{ fontSize: 12 }}>min</Box>
+      <Grid container flexDirection="column">
+        <Grid item>
+          <UrgencyIcon
+            departureTime={departureTime}
+            walkingDurationInSeconds={walkingDurationInSeconds}
+          />
+        </Grid>
+        <Grid item>
+          <Box>
+            <Box sx={{ fontSize: "24px", color: "blue" }}>
+              {differenceInMinutes(new Date(departureTime), new Date())}
+            </Box>
+            <Box sx={{ fontSize: 12 }}>min</Box>
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

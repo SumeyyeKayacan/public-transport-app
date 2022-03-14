@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { Error } from "../components/Error";
 import { Loading } from "../components/Loading";
 import { Departure, Location } from "../lib/types";
@@ -11,13 +11,19 @@ interface Props {
   position: Location;
 }
 
-export const DeparturesContainer = ({ position }: Props) => {
-  const [destination, setDestination] = useState<Location>();
-  const { data, error } = useDepartures(position);
+interface SelectedDepartureContextType {
+  selectedDeparture?: Departure;
+  setSelectedDeparture: (departure: Departure) => void;
+}
 
-  const handleSelectedDeparture = (departure: Departure) => {
-    setDestination(departure.stop.location);
-  };
+export const SelectedDepartureContext =
+  createContext<SelectedDepartureContextType>({
+    setSelectedDeparture: () => null,
+  });
+
+export const DeparturesContainer = ({ position }: Props) => {
+  const [selectedDeparture, setSelectedDeparture] = useState<Departure>();
+  const { data, error } = useDepartures(position);
 
   if (error) {
     return (
@@ -33,17 +39,13 @@ export const DeparturesContainer = ({ position }: Props) => {
   }
 
   return (
-    <Container maxWidth="sm" sx={{ height: "100%", overflow: "hidden" }}>
-      <StopsMap
-        center={position}
-        destination={destination}
-        zoom={15}
-        departures={data}
-      />
-      <DeparturesList
-        departures={data}
-        onSelectedDeparture={handleSelectedDeparture}
-      />
-    </Container>
+    <SelectedDepartureContext.Provider
+      value={{ selectedDeparture, setSelectedDeparture }}
+    >
+      <Container maxWidth="sm" sx={{ height: "100%", overflow: "hidden" }}>
+        <StopsMap center={position} zoom={15} departures={data} />
+        <DeparturesList departures={data} />
+      </Container>
+    </SelectedDepartureContext.Provider>
   );
 };

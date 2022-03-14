@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Location } from "../lib/types";
 import { getDirectionsRenderer } from "./mapsRenderer";
 
@@ -11,6 +11,8 @@ interface Props {
 }
 
 export const useRouteRenderer = ({ map, center, destination }: Props) => {
+  const [error, setError] = useState<Error>();
+
   useEffect(() => {
     if (!destination) return;
 
@@ -32,9 +34,11 @@ export const useRouteRenderer = ({ map, center, destination }: Props) => {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
         } else {
-          console.error(`error fetching directions ${result}`);
+          setError(new Error("Error in fetching directions"));
         }
       }
     );
   }, [center, destination, map]);
+
+  return { error };
 };

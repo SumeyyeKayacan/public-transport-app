@@ -28,11 +28,11 @@ const calculateUrgency = (
 
   const urgencyFactor = departureInSeconds / walkingDurationInSeconds;
 
-  if (urgencyFactor > 0.8 && urgencyFactor <= 1) {
+  if (urgencyFactor > 0.8 && urgencyFactor < 1) {
     return Urgency.Running;
   }
 
-  if (urgencyFactor > 1 && urgencyFactor <= 1.6) {
+  if (urgencyFactor >= 1 && urgencyFactor <= 1.6) {
     return Urgency.Walking;
   }
 

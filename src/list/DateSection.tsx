@@ -12,7 +12,7 @@ export const DateSection = ({
   walkingDurationInSeconds,
 }: Props) => {
   return (
-    <Box px={1} py={3} sx={{ borderRadius: 1, textAlign: "center" }}>
+    <Box px={1} py={2} sx={{ borderRadius: 1, textAlign: "center" }}>
       <Grid container flexDirection="column">
         <Grid item>
           <UrgencyIcon
@@ -22,7 +22,7 @@ export const DateSection = ({
         </Grid>
         <Grid item>
           <Box>
-            <Box sx={{ fontSize: "24px", color: "blue" }}>
+            <Box sx={{ fontSize: "22px", color: "blue" }}>
               {differenceInMinutes(new Date(departureTime), new Date())}
             </Box>
             <Box sx={{ fontSize: 12 }}>min</Box>
